@@ -38,7 +38,7 @@ static struct pbuf *received_frame;
 /* this is used by this code, ./class/net/net_driver.c, and usb_descriptors.c */
 /* ideally speaking, this should be generated from the hardware's unique ID (if available) */
 /* it is suggested that the first byte is 0x02 to indicate a link-local address */
-const uint8_t tud_network_mac_address[6] = {0x02,0x02,0x84,0x6A,0x96,0x00};
+uint8_t tud_network_mac_address[6] = {0x02,0x02,0x84,0x6A,0x96,0x00};
 
 /* network parameters of this MCU */
 static const ip_addr_t ipaddr  = IPADDR4_INIT_BYTES(192, 168, 7, 1);
@@ -75,7 +75,7 @@ static err_t linkoutput_fn(struct netif *netif, struct pbuf *p)
         return ERR_USE;
     
       /* if the network driver can accept another packet, we make it happen */
-      if (tud_network_can_xmit())
+      if (tud_network_can_xmit(p->tot_len))
       {
         tud_network_xmit(p, 0 /* unused for this example */);
         return ERR_OK;

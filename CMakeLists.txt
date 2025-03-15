@@ -1,14 +1,17 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.16)
+
+set(PICO_BOARD pico_w)
+set(PICO_NO_PICOTOOL true)
 
 # We prefer to have all linked submodules at toplevel
-set(PICO_TINYUSB_PATH ${CMAKE_CURRENT_SOURCE_DIR}/tinyusb)
+set(PICO_TINYUSB_PATH ${CMAKE_CURRENT_SOURCE_DIR}/pico-sdk/lib/tinyusb)
 
 include(pico-sdk/pico_sdk_init.cmake)
 project(pico_webserver)
 pico_sdk_init()
 
 # LWIP
-set(LWIP_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lwip)
+set(LWIP_DIR ${CMAKE_CURRENT_SOURCE_DIR}/pico-sdk/lib/lwip)
 set (LWIP_INCLUDE_DIRS
     "${LWIP_DIR}/src/include"
     "${CMAKE_CURRENT_SOURCE_DIR}"
