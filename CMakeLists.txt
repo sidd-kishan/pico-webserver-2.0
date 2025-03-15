@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.31)
 
 set(PICO_BOARD pico_w)
-set(PICO_NO_PICOTOOL true)
+#set(PICO_NO_PICOTOOL true)
 
 # We prefer to have all linked submodules at toplevel
 set(PICO_TINYUSB_PATH ${CMAKE_CURRENT_SOURCE_DIR}/pico-sdk/lib/tinyusb)
@@ -30,5 +30,6 @@ pico_enable_stdio_usb(${PROJECT_NAME} 0)
 pico_enable_stdio_uart(${PROJECT_NAME} 0)
 target_include_directories(${PROJECT_NAME} PRIVATE ${LWIP_INCLUDE_DIRS} ${PICO_TINYUSB_PATH}/src ${PICO_TINYUSB_PATH}/lib/networking)
 target_link_libraries(${PROJECT_NAME} pico_stdlib pico_unique_id tinyusb_device lwipallapps lwipcore)
-pico_add_extra_outputs(${PROJECT_NAME})
 target_compile_definitions(${PROJECT_NAME} PRIVATE PICO_ENTER_USB_BOOT_ON_EXIT=1)
+pico_add_extra_outputs(${PROJECT_NAME})
+#pico_add_uf2_output(${PROJECT_NAME})
