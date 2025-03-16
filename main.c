@@ -2,6 +2,8 @@
 #include "pico/bootrom.h"
 #include "hardware/watchdog.h"
 #include "hardware/structs/watchdog.h"
+#include "hardware/clocks.h"
+#include "hardware/structs/clocks.h"
 
 #include "tusb_lwip_glue.h"
 
@@ -35,6 +37,7 @@ static const tCGI cgi_handlers[] = {
 int main()
 {
     // Initialize tinyusb, lwip, dhcpd and httpd
+	set_sys_clock_khz(250000 , true); // Set system clock to 250 MHz
     init_lwip();
     wait_for_netif_is_up();
     dhcpd_init();
