@@ -1,0 +1,1 @@
+for i in {1..10000}; do curl http://192.168.7.1/pico.png -o x.png; done

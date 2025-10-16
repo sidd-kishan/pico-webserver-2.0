@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.31)
+cmake_minimum_required(VERSION 3.22)
 
 set(PICO_BOARD pico_w)
 #set(PICO_NO_PICOTOOL true)
